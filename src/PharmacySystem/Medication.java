@@ -16,7 +16,7 @@ public class Medication {
         this.name = null;
         this.dose = null;
         this.quantityInStock = 0;
-        this.expiryDate = null;
+        this.expiryDate = LocalDate.now();
 
         count++;
     }
@@ -29,6 +29,12 @@ public class Medication {
         this.expiryDate = expiryDate;
 
         count++;
+    }
+
+
+    //Instance Methods
+    public String toString() {
+        return String.format("Medication[\n   ID: %d\n   Name: %s\n   Dose: %s\n   Quantity in Stock: %d\n   Expiry Date: %s\n]", this.id, this.name, this.dose, this.quantityInStock, this.expiryDate.toString());
     }
 
 
