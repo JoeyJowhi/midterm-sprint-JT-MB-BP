@@ -1,6 +1,5 @@
 package PharmacySystem;
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Prescription {
     private String id;
