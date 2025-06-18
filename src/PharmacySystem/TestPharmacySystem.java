@@ -27,9 +27,10 @@ public class TestPharmacySystem {
 
     //MedicationTrackingSystem Tests
         //List Manipulation Method Tests
+        MedicationTrackingSystem.addToMedicationInventory(joeynnol);
         MedicationTrackingSystem.addToMedicationInventory(joeymine);
 
-
+        //Search Method Tests
         System.out.println(MedicationTrackingSystem.searchDrugs("Joeycyline"));
     }
 }

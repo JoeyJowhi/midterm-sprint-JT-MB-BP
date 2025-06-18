@@ -36,6 +36,17 @@ public class MedicationTrackingSystem {
     }
 
         //Editing
+    public static void editDoctor(Doctor doctorToEdit, Doctor newDoctorData) {
+        doctorList.set(doctorList.indexOf(doctorToEdit), newDoctorData);
+    }
+
+    public static void editMedication(Medication medicationToEdit, Medication newMedicationData) {
+        medicationInventory.set(medicationInventory.indexOf(medicationToEdit), newMedicationData);
+    }
+
+    public static void editPatient(Patient patientToEdit, Patient newPatientData) {
+        patientList.set(patientList.indexOf(patientToEdit), newPatientData);
+    }
 
 
     //Search Methods
@@ -50,4 +61,6 @@ public class MedicationTrackingSystem {
 
         return result;
     }
+
+
 }
