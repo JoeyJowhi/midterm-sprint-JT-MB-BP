@@ -23,5 +23,13 @@ public class TestPharmacySystem {
         joeymine.setExpiryDate(LocalDate.parse("2025-06-14"));
 
         System.out.println("--After Setters--\n" + joeymine);
+
+
+    //MedicationTrackingSystem Tests
+        //List Manipulation Method Tests
+        MedicationTrackingSystem.addToMedicationInventory(joeymine);
+
+
+        System.out.println(MedicationTrackingSystem.searchDrugs("Joeycyline"));
     }
 }
