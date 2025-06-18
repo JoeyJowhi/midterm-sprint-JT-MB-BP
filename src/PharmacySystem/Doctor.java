@@ -30,4 +30,15 @@ public class Doctor extends Person {
     public void addPatient(Patient patient) {
         this.patients.add(patient);
     }
+
+    //toString
+    public String toString() {
+        return "Doctor ID: " + getId() +
+                ", Name: " + getName() +
+                ", Age: " + getAge() +
+                ", Phone: " + getPhoneNumber() +
+                ", Specialization: " + specialization +
+                ", Patients: ";
+    }
+
 }
