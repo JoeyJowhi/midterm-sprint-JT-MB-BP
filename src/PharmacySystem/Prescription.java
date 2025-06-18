@@ -57,5 +57,16 @@ public class Prescription {
         }
     }
 
-    // ADD TOSTRING!!
+    public String toString() {
+        return "Prescription Details:\n" +
+                "  ID: " + id + "\n" +
+                "  Patient: " + patient.getName() + "\n" +
+                "  Doctor: " + doctor.getName() + "\n" +
+                "  Medication: " + medication.getName() + "\n" +
+                "  Quantity: " + quantityPrescribed + "\n" +
+                "  Instructions: " + instructions + "\n" +
+                "  Issue Date: " + issueDate + "\n" +
+                "  Expiry Date: " + prescriptionExpiry + "\n" +
+                "  Status: " + (isValid() ? "Valid" : "Expired");
+    }
 }
