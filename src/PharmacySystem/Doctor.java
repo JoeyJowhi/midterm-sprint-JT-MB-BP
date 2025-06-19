@@ -31,6 +31,10 @@ public class Doctor extends Person {
         this.patients.add(patient);
     }
 
+    public void removePatient(Patient patient) {
+        this.patients.remove(patient);
+    }
+
     //toString
     public String toString() {
         return "Doctor ID: " + getId() +
@@ -38,7 +42,7 @@ public class Doctor extends Person {
                 ", Age: " + getAge() +
                 ", Phone: " + getPhoneNumber() +
                 ", Specialization: " + specialization +
-                ", Patients: ";
+                ", Patients: " + getPatients().toString();
     }
 
 }
