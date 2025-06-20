@@ -1,4 +1,5 @@
 package PharmacySystem;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -7,6 +8,7 @@ public class MedicationTrackingSystem {
     private static ArrayList<Doctor> doctorList = new ArrayList<>();
     private static ArrayList<Patient> patientList = new ArrayList<>();
     private static ArrayList<Medication> medicationInventory = new ArrayList<>();
+    private static ArrayList<Prescription> prescriptionList = new ArrayList<>();
     private static Hashtable<Doctor, ArrayList<Prescription>> doctorPrescriptionList = new Hashtable<>();
 
 
@@ -98,9 +100,53 @@ public class MedicationTrackingSystem {
 
 
     //Prescription Class Methods
-    public void linkPrescription(Prescription prescription) {
+    public static void linkPrescription(Prescription prescription) {
         prescription.getPatient().addPrescription(prescription);
+        prescriptionList.add(prescription);
 
-        doctorPrescriptionList.put(prescription.getDoctor(), new ArrayList<>().add(prescription)); //fix this bru
+        doctorPrescriptionList.computeIfAbsent(prescription.getDoctor(), (doc)->new ArrayList<>());
+
+        doctorPrescriptionList.get(prescription.getDoctor()).add(prescription);
+    }
+
+    public static String doctorListIssuedPrescriptions(Doctor doc) {
+        return doctorPrescriptionList.get(doc).toString();
+    }
+
+
+    //Misc Methods
+    public static String generateReport() {
+        return String.format("""
+                ---System Generated Report---
+                Drug Inventory: %s
+                
+                ------
+                
+                Current Doctors: %s
+                
+                ------
+                
+                Current Patients: %s
+                
+                ------
+                
+                Issued Prescriptions: %s
+                
+                ---End of System Generated Report---
+                """, medicationInventory.toString(), doctorList.toString(), patientList.toString(), prescriptionList.toString());
+    }
+
+    public static void restock(int quantity) {
+        medicationInventory.forEach((med)->med.setQuantityInStock(med.getQuantityInStock() + quantity));
+    }
+
+    public static String expiredCheck() {
+        medicationInventory.forEach((med)->{
+            if (LocalDate.now().isAfter(med.getExpiryDate())) {
+                System.out.printf("\nEXPIRED: %s\n", med);
+            }
+        });
+
+        return "---expiredCheck Concluded---";
     }
 }
