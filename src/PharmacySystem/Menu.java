@@ -152,6 +152,7 @@ public class Menu {
                     userInput.close();
                     System.out.print("\n\nThank you for using our menu. Goodbye!\n\n");
                     runMenu = false;
+                    System.exit(0);
                 default:
                     System.out.print("\n\n   Invalid option, please pick another.\n\n");
             }
