@@ -149,4 +149,21 @@ public class MedicationTrackingSystem {
 
         return "---expiredCheck Concluded---";
     }
+
+    //Getters
+    public static String getDoctorList() {
+        return doctorList.toString();
+    }
+
+    public static String getPatientList() {
+        return patientList.toString();
+    }
+
+    public static String getMedicationInventory() {
+        return medicationInventory.toString();
+    }
+
+    public static String getPrescriptionList() {
+        return prescriptionList.toString();
+    }
 }
