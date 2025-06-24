@@ -5,11 +5,13 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         int patientCount = 1, doctorCount = 1, prescriptionCount = 1;
-        while (true) {
-            final Scanner userInput = new Scanner(System.in);
+        boolean runMenu = true;
 
+        final Scanner userInput = new Scanner(System.in);
+        do {
             System.out.println("\n---Pharmacy Tracking System---\nEnter a Number:\n   1. Add a New Patient\n   2. Add a New Doctor\n   3. Add a New Medication\n   4. Add a New Prescription\n   5. Generate System Report\n   6. Check for Expired Medication\n   7. List Prescriptions from a Doctor\n   8. List Prescriptions for a Patient\n   9. Restock a Medication\n   10. Current Doctors\n   11. Current Patients\n   12. Current Medications\n   13. Current Prescriptions\n   14. Exit\n------------------------------\n");
             final int userChoice = userInput.nextInt();
+            userInput.nextLine();
 
             switch (userChoice) {
                 case 1:
@@ -30,6 +32,7 @@ public class Menu {
                     MedicationTrackingSystem.addToPatientList(newPatient);
 
                     System.out.println("\n\n   Patient Successfully Added.\n\n");
+                    userInput.nextLine();
                     break;
                 case 2:
                     final String dID = String.format("%d", doctorCount);
@@ -52,6 +55,7 @@ public class Menu {
                     MedicationTrackingSystem.addToDoctorList(newDoctor);
 
                     System.out.println("\n\n   Doctor Successfully Added.\n\n");
+                    userInput.nextLine();
                     break;
                 case 3:
                     System.out.print("\n\n   Enter Medication Name: ");
@@ -71,6 +75,7 @@ public class Menu {
                     MedicationTrackingSystem.addToMedicationInventory(newMedication);
 
                     System.out.println("\n\n   Medication Successfully Added.\n\n");
+                    userInput.nextLine();
                     break;
                 case 4:
                     final Doctor doctorForMenuExample = new Doctor(String.format("%d", doctorCount), "Joel", 20, "(123) 456-7890", "Jocology");
@@ -97,6 +102,7 @@ public class Menu {
 
                         System.out.println("\n   Prescription Successfully Linked.\n\n");
                     }
+                    userInput.nextLine();
                     break;
                 case 5:
                     MedicationTrackingSystem.generateReport();
@@ -110,6 +116,7 @@ public class Menu {
                     final Doctor userChosenDoctor = MedicationTrackingSystem.searchDoctors(userInput.next());
 
                     MedicationTrackingSystem.doctorListIssuedPrescriptions(userChosenDoctor);
+                    userInput.nextLine();
                     break;
                 case 8:
                     System.out.print("\n\n   Enter a Patient's Name: ");
@@ -117,6 +124,7 @@ public class Menu {
                     final Patient userChosenPatient = MedicationTrackingSystem.searchPatients(userInput.next());
 
                     userChosenPatient.getPrescriptions();
+                    userInput.nextLine();
                     break;
                 case 9:
                     System.out.print("\n\n   Enter a Medication's Name: ");
@@ -125,23 +133,32 @@ public class Menu {
 
                     System.out.print("\n   Enter Restock Amount: ");
                     MedicationTrackingSystem.restock(userInput.nextInt());
+                    userInput.nextLine();
                     break;
                 case 10:
-                    MedicationTrackingSystem.getDoctorList();
+                    System.out.println(MedicationTrackingSystem.getDoctorList());
+                    userInput.nextLine();
                     break;
                 case 11:
-                    MedicationTrackingSystem.getPatientList();
+                    System.out.println(MedicationTrackingSystem.getPatientList());
                     break;
                 case 12:
-                    MedicationTrackingSystem.getMedicationInventory();
+                    System.out.println(MedicationTrackingSystem.getMedicationInventory());
                     break;
                 case 13:
-                    MedicationTrackingSystem.getPrescriptionList();
+                    System.out.println(MedicationTrackingSystem.getPrescriptionList());
+                    break;
+                case 14:
+                    userInput.close();
+                    System.out.print("\n\nThank you for using our menu. Goodbye!\n\n");
+                    runMenu = false;
+                    System.exit(0);
+                default:
+                    System.out.print("\n\n   Invalid option, please pick another.\n\n");
             }
 
-            if (userInput.nextInt() == 14) {
-                break;
-            }
-        }
+            System.out.print("\nPress Enter to Return to Main Menu.\n");
+            userInput.nextLine();
+        } while (runMenu);
     }
 }
