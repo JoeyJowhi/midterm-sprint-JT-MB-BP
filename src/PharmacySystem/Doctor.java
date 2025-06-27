@@ -15,6 +15,11 @@ public class Doctor extends Person {
     }
 
     // setters and getters
+    /**
+     * A quick getter for the purpose of getting the specialization as a string.
+     *
+     * @return The specialization as a string.
+     */
     public String getSpecialization() {
         return specialization;
     }
@@ -22,7 +27,11 @@ public class Doctor extends Person {
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
-
+    /**
+     * A quick getter for the purpose of getting Patients as a List.
+     *
+     * @return The list of patients.
+     */
     public List<Patient> getPatients() {
         return patients;
     }
